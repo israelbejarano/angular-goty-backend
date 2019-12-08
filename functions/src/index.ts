@@ -7,6 +7,9 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://firechat-a22a3.firebaseio.com"
 });
+
+const db = admin.firestore();
+
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -15,3 +18,12 @@ export const helloWorld = functions.https.onRequest((request, response) => {
       mensaje: 'Hola mundo desde funciones de Firebase!'
   });
 });
+
+export const getGOTY = functions.https.onRequest( async(request, response) => {
+
+    const gotyRef = db.collection('goty');
+    const docsSnap = await gotyRef.get();
+    const juegos = docsSnap.docs.map(doc => doc.data());
+
+    response.json(juegos);
+  });
