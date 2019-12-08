@@ -1,6 +1,8 @@
 ## Compiled JavaScript files
 **/*.js
 **/*.js.map
+serviceAccountKey.json
+**/serviceAccountKey.json
 
 # Typescript v1 declaration files
 typings/
